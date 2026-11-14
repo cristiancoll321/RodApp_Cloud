@@ -173,6 +173,7 @@
     </a>
   </nav>
 
+  <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/nav.js"></script>
   <script>
@@ -227,7 +228,7 @@
 
       // fallback: primera moto del usuario
     if (!motoId) {
-      const motosRes = await fetch(`http://localhost:8080/api/motos/usuario/${usuario.id}`);
+      const motosRes = await fetch(`${API_HOST}/api/motos/usuario/${usuario.id}`);
       const motos = await motosRes.json();
       if (Array.isArray(motos) && motos.length > 0) {
         motoId = motos[0].id;
@@ -240,7 +241,7 @@
     }
 
       // Cargar documentos de esta moto
-      fetch(`http://localhost:8080/api/documentos/moto/${motoId}`)
+      fetch(`${API_HOST}/api/documentos/moto/${motoId}`)
         .then(r => r.json())
         .then(data => {
           if (!Array.isArray(data)) data = [];

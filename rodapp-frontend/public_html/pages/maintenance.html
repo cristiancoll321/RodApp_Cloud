@@ -276,11 +276,12 @@
     </a>
   </nav>
 
-<script src="../js/main.js"></script>
+<script src="../js/config.js"></script>
+  <script src="../js/main.js"></script>
   <script src="../js/nav.js"></script>
 <script>
   // API base (ajustar según entorno)
-  const API_BASE = "http://localhost:8080";
+  const API_BASE = API_HOST;
   // Precargar fecha de hoy
   document.addEventListener('DOMContentLoaded', () => {
     const today = new Date().toISOString().split('T')[0];
