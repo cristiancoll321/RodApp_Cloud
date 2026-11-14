@@ -149,7 +149,7 @@ async function loadGarageMotos() {
   }
 
   try {
-    const res = await fetch(`http://localhost:8080/api/motos/usuario/${usuario.id}`);
+    const res = await fetch(`${API_HOST}/api/motos/usuario/${usuario.id}`);
     const motos = await res.json();
 
     if (motos.length === 0) {
@@ -234,7 +234,7 @@ async function loadHomeMoto() {
   }
 
   try {
-    const res = await fetch(`http://localhost:8080/api/motos/usuario/${usuario.id}`);
+    const res = await fetch(`${API_HOST}/api/motos/usuario/${usuario.id}`);
     const motos = await res.json();
 
     // 🚫 SIN MOTOS

@@ -236,6 +236,7 @@
     </div>
   </div>
 
+  <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script>
     // Validación y carga inicial
@@ -264,7 +265,7 @@
     // Carga dinámica de datos
     async function loadMotoDetail(motoId) {
       try {
-        const res = await fetch(`http://localhost:8080/api/motos/${motoId}`);
+        const res = await fetch(`${API_HOST}/api/motos/${motoId}`);
         if (!res.ok) throw new Error('Moto no encontrada');
         
         const moto = await res.json();
@@ -317,7 +318,7 @@
       if (!confirmar) return;
 
       try {
-        const res = await fetch(`http://localhost:8080/api/motos/${motoId}`, {
+        const res = await fetch(`${API_HOST}/api/motos/${motoId}`, {
           method: 'DELETE'
         });
 
@@ -340,7 +341,7 @@
       const container = document.getElementById('tanqueadas-container');
 
       try {
-        const res = await fetch(`http://localhost:8080/api/tanqueadas/moto/${motoId}`);
+        const res = await fetch(`${API_HOST}/api/tanqueadas/moto/${motoId}`);
         const data = await res.json();
 
         if (!Array.isArray(data) || data.length === 0) {

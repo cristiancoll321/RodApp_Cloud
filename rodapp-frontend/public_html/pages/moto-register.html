@@ -195,7 +195,8 @@
   </button>
 </div>
 
-<script src="../js/main.js"></script>
+<script src="../js/config.js"></script>
+  <script src="../js/main.js"></script>
 <script>
   let currentStep = 1;
 
@@ -321,7 +322,7 @@
 
     console.log("Enviando moto:", moto);
     try {
-      const res = await fetch('http://localhost:8080/api/motos', {
+      const res = await fetch(API_HOST + '/api/motos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(moto)

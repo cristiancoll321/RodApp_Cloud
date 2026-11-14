@@ -388,6 +388,7 @@
     </a>
   </nav>
 
+  <script src="../js/config.js"></script>
   <script src="../js/main.js"></script>
   <script>
     // Detectar parámetros de URL
@@ -401,7 +402,7 @@
     // Cargar último odómetro registrado
     async function cargarUltimoOdometro(id) {
       try {
-        const res = await fetch(`http://localhost:8080/api/tanqueadas/moto/${id}`);
+        const res = await fetch(`${API_HOST}/api/tanqueadas/moto/${id}`);
         if (!res.ok) throw new Error('Error obteniendo tanqueadas');
         
         const tanqueadas = await res.json();
@@ -414,7 +415,7 @@
           document.getElementById('ultimo-km-info').textContent = `Último registro: ${ultimoOdometro.toLocaleString()} km`;
         } else {
           // Si no hay tanqueadas, cargar del kmActual de la moto
-          const resM = await fetch(`http://localhost:8080/api/motos/${id}`);
+          const resM = await fetch(`${API_HOST}/api/motos/${id}`);
           if (resM.ok) {
             const moto = await resM.json();
             ultimoOdometro = moto.kmActual || moto.kmInicial || 0;
@@ -455,7 +456,7 @@
       }
 
       try {
-        const res = await fetch(`http://localhost:8080/api/motos/usuario/${usuario.id}`);
+        const res = await fetch(`${API_HOST}/api/motos/usuario/${usuario.id}`);
         if (!res.ok) throw new Error('Error obteniendo motos');
         
         const motos = await res.json();
@@ -592,7 +593,7 @@
       console.log('Moto ID siendo enviado:', motoIdNum);
 
       try {
-        const res = await fetch('http://localhost:8080/api/tanqueadas', {
+        const res = await fetch(API_HOST + '/api/tanqueadas', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -612,7 +613,7 @@
 
         // Actualizar kmActual en la moto con el nuevo odómetro
         try {
-          const updateRes = await fetch(`http://localhost:8080/api/motos/${motoIdNum}`, {
+          const updateRes = await fetch(`${API_HOST}/api/motos/${motoIdNum}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ kmActual: odometro })
